@@ -7,12 +7,12 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "src/test/resources/features/compras_amazon.feature",
+		features = "src/test/resources/features/compra_de_menos_tres_produtos.feature",
 		glue = "br.projeto.automacao.steps",
-		tags = "@realizarLogin",
+		tags = "@realizarOCadastroDoCliente",
 		plugin = {"pretty", "html:target/report-html", "json:target/report.json"},
 		monochrome = true,
-		snippets = SnippetType.CAMELCASE,
+		snippets = SnippetType.UNDERSCORE,
 		dryRun = false,
 		strict = false
 		)

@@ -1,18 +1,15 @@
 package br.projeto.automacao.steps;
-import static org.junit.Assert.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Quando;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import junit.framework.Assert;
-
+/*
 public class ComprasAmazon {
 	
 	private WebDriver driver;
@@ -28,6 +25,11 @@ public class ComprasAmazon {
 		driver.navigate().to(url);
 		driver.manage().window().maximize();
 	}
+	@Dado("^Como um cliente cadastrado no \"([^\"]*)\"$")
+	public void como_um_cliente_cadastrado_no(String url) throws Throwable {
+		driver.navigate().to(url);
+		driver.manage().window().maximize();
+	}
 
 	@Então("^devo ir para a tela principal da Amazon$")
 	public void devo_ir_para_a_tela_principal_da_Amazon() throws Throwable {
@@ -37,8 +39,7 @@ public class ComprasAmazon {
 	
 	@Quando("^clico no botão \"([^\"]*)\"$")
 	public void clico_no_botão(String botao) throws Throwable {
-		String str = botao;
-        switch(str)
+        switch(botao)
         {
             case "Faça seu login":
                 driver.findElement(By.cssSelector("#nav-signin-tooltip .nav-action-inner")).click();
@@ -83,3 +84,5 @@ public class ComprasAmazon {
 		driver.quit();
 	}
 }
+
+ */

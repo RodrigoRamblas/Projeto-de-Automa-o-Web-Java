@@ -2,12 +2,13 @@ package br.projeto.automacao.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class Driver {
     private WebDriver driver;
 
     public WebDriver iniciarDiver() {
-        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\gqsga\\Downloads\\Chrome driver\\chromedriver.exe");
         driver = new ChromeDriver();
         return driver;
     }
@@ -42,7 +43,12 @@ public class Driver {
         driver.findElement(By.id(id)).click();
     }
 
-    //Métodos preencher
+    public void preencherComboValor(String Id, String value) {
+        Select selectBox = new Select(driver.findElement(By.id(Id)));
+        selectBox.selectByValue(value);
+    }
+
+        //Métodos preencher
     public void preencherPorId(String id, String texto, Boolean comClick){
         if(comClick){
             driver.findElement(By.id(id)).click();

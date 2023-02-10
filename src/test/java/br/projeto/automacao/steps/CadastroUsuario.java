@@ -7,6 +7,8 @@ import cucumber.api.java.After;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,6 +22,15 @@ public class CadastroUsuario extends Driver {
 	private String url;
 	private String primeiroNome = faker.name().firstName();
 	private String ultimoNome = faker.name().lastName();
+	private String empresa = faker.company().name();
+	private String endereco = faker.address().streetName();
+	private String endereco2 = faker.address().streetAddress();
+	private String estado = faker.address().state();
+	private String cidade = faker.address().city();
+	private String cep = faker.address().zipCode();
+	private String numero = faker.phoneNumber().cellPhone();
+
+
 
 	private String nomeCompleto = faker.name().fullName();
 
@@ -48,7 +59,7 @@ public class CadastroUsuario extends Driver {
 	}
 
 	@Quando("^preencher o \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
-	public void preencher_o(String titulo, String password, String data_de_aniversario, String arg4, String arg5) throws Throwable {
+	public void preencher_o(String titulo, String password, String data_de_aniversario, String inscreva_se_para_nossas_novidades, String receba_ofertas_especiais_de_nossos_parceiros) throws Throwable {
 		switch(titulo)
 		{
 			case "Mr.":
@@ -64,21 +75,48 @@ public class CadastroUsuario extends Driver {
 		String data = data_de_aniversario;
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate localDate = LocalDate.parse(data, format);
+
 		String diaDaSemana = String.valueOf(localDate.getDayOfMonth());
 		driver.preencherPorId(sigupLogin.Dia(), diaDaSemana, false);
 
+		driver.preencherComboValor(sigupLogin.Mes(), String.valueOf(localDate.getMonthValue()));
+
+		String anoEscolhido = String.valueOf(localDate.getYear());
+		driver.preencherPorId(sigupLogin.Ano(), anoEscolhido, false);
+
+
+		if(inscreva_se_para_nossas_novidades.equals("Sim"))
+		{
+			driver.clicarPorId(sigupLogin.InscrevaSeParaNossasNovidades());
+		}
+
+		if(receba_ofertas_especiais_de_nossos_parceiros.equals("Sim"))
+		{
+			driver.clicarPorId(sigupLogin.RecebaOfertasEspeciaisDeNossosParceiros());
+		}
 	}
 
 	@Quando("^preencher os dados pessoais$")
 	public void preencher_os_dados_pessoais() throws Throwable {
+		driver.preencherPorId(sigupLogin.PrimeiroNome(), primeiroNome, true);
+        driver.preencherPorId(sigupLogin.UltimoNome(), ultimoNome, true);
+		driver.preencherPorId(sigupLogin.Empresa(), empresa, true);
+		driver.preencherPorId(sigupLogin.Endereco(), endereco, true);
+		driver.preencherPorId(sigupLogin.Endereco2(), endereco2, true);
+		driver.preencherComboValor(sigupLogin.Pais(), "1");
+		driver.preencherPorId(sigupLogin.Estado(), estado, true);
+		driver.preencherPorId(sigupLogin.Cidade(), cidade, true);
+		driver.preencherPorId(sigupLogin.CEP(), cep, true);
+		driver.preencherPorId(sigupLogin.Numero(), numero, true);
 	}
 
 	@Então("^deve criar a conta$")
 	public void deve_criar_a_conta() throws Throwable {
+
 	}
 
 	@After
 	public void fecharBrowser() {
-		driver.fecharOSite();
+		//driver.fecharOSite();
 	}
 }

@@ -39,7 +39,8 @@ Cenário: Como um usuário quero acessar a página da automationexercise.com par
 
 @compraDeTresProdutos
 Cenário: Como um usuário quero acessar a página da automationexercise.com para realizar compras
-	Dado Como um cliente cadastrado no "https://automationexercise.com/"
+	Dado que busco pelo site "https://automationexercise.com/" no navegador
+	E devo ir para a tela principal da Automation Exercise
     Quando Eu quero fazer a compra de ao menos três produtos
     Então Para que eu possa estar bem vestida
 

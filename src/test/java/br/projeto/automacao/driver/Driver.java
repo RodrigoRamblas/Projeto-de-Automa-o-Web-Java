@@ -6,9 +6,11 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Driver {
     private WebDriver driver;
-
+    //private String chromeDriver = "C:\\Users\\gqsga\\Downloads\\Chrome driver\\chromedriver.exe";
+    private String chromeDriver = "C:\\Drivers\\chromedriver.exe";
+    
     public WebDriver iniciarDiver() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\gqsga\\Downloads\\Chrome driver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", chromeDriver);
         driver = new ChromeDriver();
         return driver;
     }

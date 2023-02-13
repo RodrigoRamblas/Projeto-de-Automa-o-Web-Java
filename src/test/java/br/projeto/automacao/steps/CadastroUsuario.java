@@ -7,9 +7,6 @@ import cucumber.api.java.After;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -112,11 +109,11 @@ public class CadastroUsuario extends Driver {
 
 	@Então("^deve criar a conta$")
 	public void deve_criar_a_conta() throws Throwable {
-
+		driver.clicarPorXpathButtonContains("Create Account");
 	}
 
 	@After
 	public void fecharBrowser() {
-		//driver.fecharOSite();
+		driver.fecharOSite();
 	}
 }

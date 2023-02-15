@@ -57,52 +57,63 @@ public class SigupLogin {
     }
 
     public String PrimeiroNome(){
-        String primeiroNome = "#first_name";
+        String primeiroNome = "first_name";
         return primeiroNome;
     }
 
     public String UltimoNome(){
-        String ultimoNome = "#last_name";
+        String ultimoNome = "last_name";
         return ultimoNome;
     }
 
     public String Empresa(){
-        String empresa = "#company";
+        String empresa = "company";
         return empresa;
     }
 
     public String Endereco(){
-        String endereco = "#adress1";
+        String endereco = "address1";
         return endereco;
     }
 
     public String Endereco2(){
-        String endereco2 = "#adress2";
+        String endereco2 = "address2";
         return endereco2;
     }
 
     public String Pais(){
-        String pais = "#country";
+        String pais = "country";
         return pais;
     }
 
     public String Estado(){
-        String estado = "#state";
+        String estado = "state";
         return estado;
     }
 
     public String Cidade(){
-        String cidade = "#city";
+        String cidade = "city";
         return cidade;
     }
 
     public String CEP(){
-        String cep = "#zipcode";
+        String cep = "zipcode";
         return cep;
     }
 
     public String Numero(){
-        String numero = "#mobile_numebr";
+        String numero = "mobile_number";
         return numero;
     }
+
+    public String ContaCriadaComSucesso(){
+        String contaCriadaComSucesso = "//*[@id='form']/div/div/div/h2";
+        return contaCriadaComSucesso;
+    }
+
+    public String BotaoContinuar(){
+        String botaoContinuar = "//*[@id=\"form\"]/div/div/div/div/a";
+        return botaoContinuar;
+    }
+
 }

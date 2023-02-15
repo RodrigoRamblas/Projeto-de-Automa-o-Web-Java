@@ -3,10 +3,10 @@ package br.projeto.automacao.steps;
 import br.projeto.automacao.driver.Driver;
 import br.projeto.automacao.page.SigupLogin;
 import com.github.javafaker.Faker;
-import cucumber.api.java.After;
-import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.Então;
-import cucumber.api.java.pt.Quando;
+import io.cucumber.java.After;
+import io.cucumber.java.pt.*;
+import org.junit.Assert;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -33,9 +33,13 @@ public class CadastroUsuario extends Driver {
 
 	@Dado("^que o usuário acessa o site \"([^\"]*)\"$")
 	public void que_o_usuário_acessa_o_site(String url) throws Throwable {
-		this.url = url;
-		driver.acessarAUrl(url);
-		driver.maximizeNavegador();
+		try{
+			this.url = url;
+			driver.acessarAUrl(url);
+			driver.maximizeNavegador();
+		} catch (Exception ex) {
+			ex.getMessage();
+		}
 	}
 
 	@Quando("^clica em \"([^\"]*)\"$")
@@ -47,11 +51,10 @@ public class CadastroUsuario extends Driver {
 			driver.acessarUrlPeloCaminho(url + "/login");
 		}
 	}
-
-	@Quando("^preenche o \"([^\"]*)\" e \"([^\"]*)\" e clica no botão \"([^\"]*)\"$")
-	public void preenche_o_Nome_e_e_clica_no_botão(String name, String email, String signup) throws Throwable {
-		driver.preencerPorXpath(sigupLogin.Name(), primeiroNome);
-		driver.preencerPorXpath(sigupLogin.Email(), primeiroNome + "_." + ultimoNome + email);
+	@Quando("preenche o {string} e {string} e clica no botão {string}")
+	public void preenche_o_e_e_clica_no_botão(String name, String email, String signup) {
+		driver.preencherPorXpath(sigupLogin.Name(), primeiroNome, true);
+		driver.preencherPorXpath(sigupLogin.Email(), primeiroNome + "_." + ultimoNome + email, true);
 		driver.clicarPorXpathButtonContains(signup);
 	}
 
@@ -100,7 +103,7 @@ public class CadastroUsuario extends Driver {
 		driver.preencherPorId(sigupLogin.Empresa(), empresa, true);
 		driver.preencherPorId(sigupLogin.Endereco(), endereco, true);
 		driver.preencherPorId(sigupLogin.Endereco2(), endereco2, true);
-		driver.preencherComboValor(sigupLogin.Pais(), "1");
+		driver.preencherComboValor(sigupLogin.Pais(), "Canada");
 		driver.preencherPorId(sigupLogin.Estado(), estado, true);
 		driver.preencherPorId(sigupLogin.Cidade(), cidade, true);
 		driver.preencherPorId(sigupLogin.CEP(), cep, true);
@@ -110,10 +113,15 @@ public class CadastroUsuario extends Driver {
 	@Então("^deve criar a conta$")
 	public void deve_criar_a_conta() throws Throwable {
 		driver.clicarPorXpathButtonContains("Create Account");
+		String texto = driver.pegarTextoPorXpath(sigupLogin.ContaCriadaComSucesso());
+		Assert.assertEquals("ACCOUNT CREATED!", texto);
+		driver.clicarPorXpath(sigupLogin.BotaoContinuar());
+
 	}
 
 	@After
-	public void fecharBrowser() {
-		driver.fecharOSite();
+	public void tearDown() {
+		driver.fecharBrowser();
 	}
+
 }

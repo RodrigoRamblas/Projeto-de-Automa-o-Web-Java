@@ -1,37 +1,44 @@
 package br.projeto.automacao.steps;
-
 import br.projeto.automacao.driver.Driver;
 import br.projeto.automacao.page.ComprasItens;
-import br.projeto.automacao.page.SigupLogin;
 import com.github.javafaker.Faker;
 import io.cucumber.java.After;
 import io.cucumber.java.pt.*;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class RealizarCompra extends Driver {
 	Driver driver = new Driver();
+    Faker faker = new Faker();
     ComprasItens comprar = new ComprasItens();
+    private Random random;
+    private String url;
+    private String nomeCartao = faker.name().fullName();
+    private String numeroCartao = faker.finance().creditCard();
+    private String cvc = faker.numerify("###");
+    private String mesExpiracao = String.valueOf(faker.number().numberBetween(1,12));
+    private String anoExpiracao = String.valueOf(faker.number().numberBetween(2023,2039));
 
-    @Quando("^Eu quero fazer a compra de ao menos três produtos$")
-    public void eu_quero_fazer_a_compra_de_ao_menos_três_produtos() throws Throwable {
-        driver.clicarPorXpat(comprar.BlueTop());
-        driver.clicarPorXpathButtonContains(comprar.ContinueShopping());
-        driver.clicarPorXpat(comprar.MenTshirt());
-        driver.clicarPorXpathButtonContains(comprar.ContinueShopping());
-        driver.clicarPorXpat(comprar.SleevelessDress());
-        driver.clicarPorXpathButtonContains(comprar.ContinueShopping());
+
+    @Dado("^que busco pelo site \"([^\"]*)\"$ no navegador")
+    public void que_busco_pelo_site_no_navegador(String url) throws Throwable {
+        try{
+            this.url = url;
+            driver.acessarAUrl(url);
+            driver.maximizeNavegador();
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
     }
 
-    @Então("^Para que eu possa estar bem vestida$")
-    public void para_que_eu_possa_estar_bem_vestida() throws Throwable {
-
+    @E("^devo ir para a tela principal da Automation Exercise")
+    public void devo_ir_para_a_tela_principal_da_Automation_Exercise() throws Throwable{
+        driver.clicarPorXpath(comprar.Home());
     }
 
-	@After
-	public void fecharBrowser() {
-		//driver.fecharOSite();
-	}
+
+
+    @After
+    public void tearDown() {
+
+    }
 }

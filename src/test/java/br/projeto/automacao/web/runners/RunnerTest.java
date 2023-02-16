@@ -1,9 +1,7 @@
 package br.projeto.automacao.web.runners;
-import io.cucumber.core.snippets.SnippetType;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
-
 import static io.cucumber.junit.CucumberOptions.SnippetType.UNDERSCORE;
 
 

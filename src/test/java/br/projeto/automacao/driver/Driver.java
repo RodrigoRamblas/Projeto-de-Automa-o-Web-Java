@@ -2,18 +2,19 @@ package br.projeto.automacao.driver;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private WebDriver driver;
+
     //private String chromeDriver = "C:\\Users\\gqsga\\Downloads\\Chrome driver\\chromedriver.exe";
     private String chromeDriver = "C:\\Drivers\\chromedriver.exe";
 
@@ -89,9 +90,29 @@ public class Driver {
 
     }
 
-    public void preencherPorXpath(String xpath, String texto, boolean b){
-        driver.findElement(By.xpath(xpath)).click();
-        driver.findElement(By.xpath(xpath)).sendKeys(texto);
+    public void preencherPorXpath(String xpath, String texto, @NotNull Boolean comClick) {
+         try {
+            if(comClick){
+                driver.findElement(By.xpath(xpath)).click();
+                driver.findElement(By.xpath(xpath)).clear();
+                driver.findElement(By.xpath(xpath)).sendKeys(texto);
+            }else {
+                driver.findElement(By.xpath(xpath)).sendKeys(texto);
+            }
+        }catch (Exception ex){
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            JavascriptExecutor jse = (JavascriptExecutor)driver;
+            jse.executeScript("window.scrollBy(0,250)");
+            if(comClick){
+                driver.findElement(By.xpath(xpath)).click();
+                driver.findElement(By.xpath(xpath)).clear();
+                driver.findElement(By.xpath(xpath)).sendKeys(texto);
+            }else {
+                driver.findElement(By.xpath(xpath)).sendKeys(texto);
+            }
+            ex.getMessage();
+
+        }
     }
     public void preencherPorXpathInputName(String campo, String texto){
         String input = "//input[@name='" + campo + "')]";
@@ -102,8 +123,27 @@ public class Driver {
     public String pegarTextoPorXpath(String xpath){
         return driver.findElement(By.xpath(xpath)).getText();
     }
+    public void clicarPorClass(String className){
+        driver.findElement(By.className(className)).click();
+    }
 
+    public void pageDown(Integer interacao) throws AWTException{
+        Robot robot = new Robot();
+        for (int i = 0; i <= interacao; i++){
+            robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+        }
+    }
+    public void pageUp(Integer interacao) throws AWTException{
+        Robot robot = new Robot();
+        for (int i = 0; i <= interacao; i++) {
+            robot.keyPress(KeyEvent.VK_PAGE_UP);
+        }
+    }
     public void fecharBrowser(){
         driver.quit();
+    }
+
+    public WebDriver.Options manage() {
+        return null;
     }
 }

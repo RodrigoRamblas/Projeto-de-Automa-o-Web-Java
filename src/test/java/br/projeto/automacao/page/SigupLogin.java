@@ -115,5 +115,78 @@ public class SigupLogin {
         String botaoContinuar = "//*[@id=\"form\"]/div/div/div/div/a";
         return botaoContinuar;
     }
+    public String ViewStylishDress(){
+        String viewStylishDress = "/html/body/section[2]/div/div/div[2]/div/div[5]/div/div[2]/ul/li/a";
+        return viewStylishDress;
+    }
+    public String Quantidade(){
+        String quantidade = "//*[@id=\"quantity\"]";
+        return quantidade;
+    }
+    public String AddToCart(){
+        String addToCart = "/html/body/section/div/div/div[2]/div[2]/div[2]/div/span/button";
+        return addToCart;
+    }
+    public String ContinueShopping(){
+        String continueShopping = "Continue Shopping";
+        return continueShopping;
+    }
+    public String Products(){
+        String products = "//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[2]/a";
+        return products;
+    }
+    public String ViewBeautifulPeacockBlueCottonLinenSaree(){
+        String viewBeautifulPeacockBlueCottonLinenSaree = "/html/body/section[2]/div/div/div[2]/div/div[33]/div/div[2]/ul/li/a";
+        return viewBeautifulPeacockBlueCottonLinenSaree;
+    }
+    public String ViewMenTshirt(){
+        String viewMenTshirt = "/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[2]/ul/li/a";
+        return viewMenTshirt;
+    }
+    public String Cart(){
+        String cart = "//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[3]/a";
+        return cart;
+    }
+    public String ProceedtoCheckout(){
+        String proceedtoCheckout = "//*[@id=\"do_action\"]/div[1]/div/div/a";
+        return proceedtoCheckout;
+    }
+    public String PlaceOrder() {
+        String placeOrder = "//*[@id=\"cart_items\"]/div/div[7]/a";
+        return placeOrder;
+    }
+    public String NomeCartao(){
+        String nomeCartao = "//*[@id=\"payment-form\"]/div[1]/div/input";
+        return nomeCartao;
+    }
+    public String NumeroCartao() {
+        String numeroCartao = "//*[@id=\"payment-form\"]/div[2]/div/input";
+        return numeroCartao;
+    }
+    public String CVC() {
+        String cvc = "//*[@id=\"payment-form\"]/div[3]/div[1]/input";
+        return cvc;
+    }
+    public String MesExpiracao() {
+        String mesExpiracao = "//*[@id=\"payment-form\"]/div[3]/div[2]/input";
+        return mesExpiracao;
+    }
+    public String AnoExpiracao() {
+        String anoExpiracao = "//*[@id=\"payment-form\"]/div[3]/div[3]/input";
+        return anoExpiracao;
+    }
+    public String Submit(){
+        String submit = "//*[@id=\"submit\"]";
+        return submit;
+    }
+    public String OrdemCriada(){
+        String ordemCriada = "Order Placed!";
+        return ordemCriada;
+    }
+    public String Continuar(){
+        String continuar = "//*[@id=\"form\"]/div/div/div/div/a";
+        return continuar;
+    }
+
 
 }

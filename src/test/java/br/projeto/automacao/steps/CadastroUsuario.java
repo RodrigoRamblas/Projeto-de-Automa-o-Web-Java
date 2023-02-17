@@ -6,6 +6,17 @@ import com.github.javafaker.Faker;
 import io.cucumber.java.After;
 import io.cucumber.java.pt.*;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -19,8 +30,8 @@ public class CadastroUsuario extends Driver {
 	private String nomeCartao = faker.name().fullName();
 	private String numeroCartao = faker.finance().creditCard();
 	private String cvc = faker.numerify("###");
-	private String mesExpiracao = String.valueOf(faker.number().numberBetween(1,12));
-	private String anoExpiracao = String.valueOf(faker.number().numberBetween(2023,2039));
+	private String mesExpiracao = String.valueOf(faker.number().numberBetween(1, 12));
+	private String anoExpiracao = String.valueOf(faker.number().numberBetween(2023, 2039));
 	private Random random;
 	private String url;
 	private String primeiroNome = faker.name().firstName();
@@ -36,7 +47,7 @@ public class CadastroUsuario extends Driver {
 
 	@Dado("^que o usuário acessa o site \"([^\"]*)\"$")
 	public void que_o_usuário_acessa_o_site(String url) throws Throwable {
-		try{
+		try {
 			this.url = url;
 			driver.acessarAUrl(url);
 			driver.maximizeNavegador();
@@ -44,25 +55,27 @@ public class CadastroUsuario extends Driver {
 			ex.getMessage();
 		}
 	}
+
 	@Quando("^clica em \"([^\"]*)\"$")
 	public void clica_em(String botao) throws Exception {
 		try {
 			driver.clicarPorXpathAContains(botao);
-		} catch(Exception ex){
-			System.out.printf("Não encontrou o botão %s Mensagem: %s",botao, ex.getMessage());
+		} catch (Exception ex) {
+			System.out.printf("Não encontrou o botão %s Mensagem: %s", botao, ex.getMessage());
 			driver.acessarUrlPeloCaminho(url + "/login");
 		}
 	}
+
 	@Quando("preenche o {string} e {string} e clica no botão {string}")
 	public void preenche_o_e_e_clica_no_botão(String name, String email, String signup) {
 		driver.preencherPorXpath(sigupLogin.Name(), primeiroNome, true);
 		driver.preencherPorXpath(sigupLogin.Email(), primeiroNome + "_." + ultimoNome + email, true);
 		driver.clicarPorXpathButtonContains(signup);
 	}
+
 	@Quando("^preencher o \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
 	public void preencher_o(String titulo, String password, String data_de_aniversario, String inscreva_se_para_nossas_novidades, String receba_ofertas_especiais_de_nossos_parceiros) throws Throwable {
-		switch(titulo)
-		{
+		switch (titulo) {
 			case "Mr.":
 				driver.clicarPorId(sigupLogin.Mr());
 				break;
@@ -86,20 +99,19 @@ public class CadastroUsuario extends Driver {
 		driver.preencherPorId(sigupLogin.Ano(), anoEscolhido, false);
 
 
-		if(inscreva_se_para_nossas_novidades.equals("Sim"))
-		{
+		if (inscreva_se_para_nossas_novidades.equals("Sim")) {
 			driver.clicarPorId(sigupLogin.InscrevaSeParaNossasNovidades());
 		}
 
-		if(receba_ofertas_especiais_de_nossos_parceiros.equals("Sim"))
-		{
+		if (receba_ofertas_especiais_de_nossos_parceiros.equals("Sim")) {
 			driver.clicarPorId(sigupLogin.RecebaOfertasEspeciaisDeNossosParceiros());
 		}
 	}
+
 	@Quando("^preencher os dados pessoais$")
 	public void preencher_os_dados_pessoais() throws Throwable {
 		driver.preencherPorId(sigupLogin.PrimeiroNome(), primeiroNome, true);
-        driver.preencherPorId(sigupLogin.UltimoNome(), ultimoNome, true);
+		driver.preencherPorId(sigupLogin.UltimoNome(), ultimoNome, true);
 		driver.preencherPorId(sigupLogin.Empresa(), empresa, true);
 		driver.preencherPorId(sigupLogin.Endereco(), endereco, true);
 		driver.preencherPorId(sigupLogin.Endereco2(), endereco2, true);
@@ -109,6 +121,7 @@ public class CadastroUsuario extends Driver {
 		driver.preencherPorId(sigupLogin.CEP(), cep, true);
 		driver.preencherPorId(sigupLogin.Numero(), numero, true);
 	}
+
 	@Então("^deve criar a conta$")
 	public void deve_criar_a_conta() throws Throwable {
 		driver.clicarPorXpathButtonContains("Create Account");
@@ -117,34 +130,33 @@ public class CadastroUsuario extends Driver {
 		driver.clicarPorXpath(sigupLogin.BotaoContinuar());
 
 	}
+
 	@Quando("^Eu quero fazer a compra de ao menos três produtos$")
 	public void eu_quero_fazer_a_compra_de_ao_menos_três_produtos() throws Throwable {
-		driver.pageDown(1);
+		driver.pageDown(0);
 		driver.clicarPorXpath(sigupLogin.ViewStylishDress());
 		driver.preencherPorXpath(sigupLogin.Quantidade(), "3", true);
 		driver.clicarPorXpath(sigupLogin.AddToCart());
 		driver.clicarPorXpathButtonContains(sigupLogin.ContinueShopping());
 		driver.clicarPorXpath(sigupLogin.Products());
-
-		driver.pageDown(8);
+		driver.pageDown(7);
 		driver.clicarPorXpath(sigupLogin.ViewBeautifulPeacockBlueCottonLinenSaree());
 		driver.preencherPorXpath(sigupLogin.Quantidade(), "2", true);
 		driver.clicarPorXpath(sigupLogin.AddToCart());
 		driver.clicarPorXpathButtonContains(sigupLogin.ContinueShopping());
 		driver.clicarPorXpath(sigupLogin.Products());
-
-		driver.pageDown(1);
+		driver.pageDown(0);
 		driver.clicarPorXpath(sigupLogin.ViewMenTshirt());
 		driver.preencherPorXpath(sigupLogin.Quantidade(), "1", true);
 		driver.clicarPorXpath(sigupLogin.AddToCart());
 		driver.clicarPorXpathButtonContains(sigupLogin.ContinueShopping());
-
-
 	}
+
 	@Então("^Para que eu possa estar bem vestida$")
 	public void para_que_eu_possa_estar_bem_vestida() throws Throwable {
 		driver.clicarPorXpath(sigupLogin.Cart());
 		driver.clicarPorXpath(sigupLogin.ProceedtoCheckout());
+		driver.pageDown(0);
 		driver.clicarPorXpath(sigupLogin.PlaceOrder());
 		driver.preencherPorXpath(sigupLogin.NomeCartao(), nomeCartao, true);
 		driver.preencherPorXpath(sigupLogin.NumeroCartao(), numeroCartao, true);
@@ -152,8 +164,7 @@ public class CadastroUsuario extends Driver {
 		driver.preencherPorXpath(sigupLogin.MesExpiracao(), mesExpiracao, true);
 		driver.preencherPorXpath(sigupLogin.AnoExpiracao(), anoExpiracao, true);
 		driver.clicarPorXpath(sigupLogin.Submit());
-		String texto = driver.pegarTextoPorXpath(sigupLogin.OrdemCriada());
-		Assert.assertEquals("ORDER PLACED!", texto);
+		Assert.assertEquals("ORDER PLACED!", driver.pegarTextoPorXpath(sigupLogin.OrdemCriada()));
 		driver.clicarPorXpath(sigupLogin.Continuar());
 	}
 
@@ -161,4 +172,5 @@ public class CadastroUsuario extends Driver {
 	public void tearDown() {
 		driver.fecharBrowser();
 	}
+
 }

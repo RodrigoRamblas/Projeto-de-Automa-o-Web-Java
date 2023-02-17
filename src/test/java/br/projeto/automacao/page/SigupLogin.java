@@ -133,6 +133,10 @@ public class SigupLogin {
         String products = "//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[2]/a";
         return products;
     }
+    public String Card(){
+        String card = "/html/body/section[2]/div/div/div[2]/div/div[33]/div/div[1]/div[1]";
+        return card;
+    }
     public String ViewBeautifulPeacockBlueCottonLinenSaree(){
         String viewBeautifulPeacockBlueCottonLinenSaree = "/html/body/section[2]/div/div/div[2]/div/div[33]/div/div[2]/ul/li/a";
         return viewBeautifulPeacockBlueCottonLinenSaree;
@@ -178,7 +182,7 @@ public class SigupLogin {
         return submit;
     }
     public String OrdemCriada(){
-        String ordemCriada = "Order Placed!";
+        String ordemCriada = "//*[@id=\"form\"]/div/div/div/h2/b";
         return ordemCriada;
     }
     public String Continuar(){

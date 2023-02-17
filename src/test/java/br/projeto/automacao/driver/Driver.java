@@ -120,10 +120,17 @@ public class Driver {
         driver.findElement(By.className(className)).click();
     }
 
+
     public void pageDown(Integer interacao) throws AWTException{
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        for (int i = 0; i <= interacao; i++) {
+            js.executeScript("window.scrollBy(0, 800)");
+        }
+    }
+    public void Down(Integer interacao) throws AWTException{
         Robot robot = new Robot();
-        for (int i = 0; i <= interacao; i++){
-            robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+        for (int i = 0; i <= interacao; i++) {
+            robot.keyPress(KeyEvent.VK_DOWN);
         }
     }
     public void pageUp(Integer interacao) throws AWTException{

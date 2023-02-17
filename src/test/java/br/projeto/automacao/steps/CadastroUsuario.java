@@ -161,9 +161,8 @@ public class CadastroUsuario extends Driver {
 		driver.clicarPorXpath(sigupLogin.Continuar());
 	}
 
-	//@After
-	//public void tearDown() {
-		//driver.fecharBrowser();
-
-
+	@After
+	public void tearDown() {
+		driver.fecharBrowser();
+	}
 }

@@ -4,7 +4,6 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 import static io.cucumber.junit.CucumberOptions.SnippetType.UNDERSCORE;
 
-
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features = "src/test/resources/features/compra_de_menos_tres_produtos.feature",

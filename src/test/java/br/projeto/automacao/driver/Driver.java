@@ -2,10 +2,8 @@ package br.projeto.automacao.driver;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.awt.*;
@@ -14,9 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private WebDriver driver;
-
-    //private String chromeDriver = "C:\\Users\\gqsga\\Downloads\\Chrome driver\\chromedriver.exe";
-    private String chromeDriver = "C:\\Drivers\\chromedriver.exe";
+    private String chromeDriver = "src\\test\\java\\br\\projeto\\automacao\\driver\\chromedriver.exe";
 
     public WebDriver iniciarDriver() {
         System.setProperty("webdriver.chrome.driver", chromeDriver);
@@ -42,9 +38,6 @@ public class Driver {
         driver.findElement(By.xpath(texto)).click();
     }
     public void clicarPorXpath(String texto){
-        driver.findElement(By.xpath(texto)).click();
-    }
-    public void clicarPorXpat(String texto){
         driver.findElement(By.xpath(texto)).click();
     }
     public void clicarPorXpathInputName(String texto){

@@ -6,13 +6,9 @@ import com.github.javafaker.Faker;
 import io.cucumber.java.After;
 import io.cucumber.java.pt.*;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class CadastroUsuario extends Driver {
 	Driver driver = new Driver();

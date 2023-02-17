@@ -1,7 +1,5 @@
 package br.projeto.automacao.page;
 
-import java.util.List;
-
 public class SigupLogin {
     public String Name(){
         String name = "//div[3]/div/form/input[2]";
@@ -187,6 +185,5 @@ public class SigupLogin {
         String continuar = "//*[@id=\"form\"]/div/div/div/div/a";
         return continuar;
     }
-
 
 }

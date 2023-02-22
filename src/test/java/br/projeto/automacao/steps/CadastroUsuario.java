@@ -6,17 +6,6 @@ import com.github.javafaker.Faker;
 import io.cucumber.java.After;
 import io.cucumber.java.pt.*;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -46,7 +35,7 @@ public class CadastroUsuario extends Driver {
 	private String nomeCompleto = faker.name().fullName();
 
 	@Dado("^que o usuário acessa o site \"([^\"]*)\"$")
-	public void que_o_usuário_acessa_o_site(String url) throws Throwable {
+	public void que_o_usuario_acessa_o_site(String url) throws Throwable {
 		try {
 			this.url = url;
 			driver.acessarAUrl(url);

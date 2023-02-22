@@ -9,7 +9,7 @@ import org.junit.Assert;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
-
+//finalizado
 public class CadastroUsuario extends Driver {
 	Driver driver = new Driver();
 	Faker faker = new Faker();

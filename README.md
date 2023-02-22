@@ -41,7 +41,7 @@ git clone https://github.com/RodrigoRamblas/Projeto-de-Automa-o-Web-Java.git
 #### O projeto deve ser executado pela classe RunnerTest
 ![image](https://user-images.githubusercontent.com/50155338/219535524-f7576792-cd51-47f6-98e2-c73baf5b6ac3.png)
 ## Conhecendo Git Actions
-#### O Git Actions fica lozalizado no arquivo yml, ele serve para realizar ações do projeto na aba Actions do GitHub. O push dele deve ser pela branch que está sendo usada no projeto e com o comando "run: a ação que desejar", no caso da imagem, ele faz uma intalação limpa do projeto.
+#### O Git Actions fica localizado no arquivo yml, ele serve para realizar ações do projeto na aba Actions do GitHub. O push dele deve ser pela branch que está sendo usada no projeto e com o comando "run: a ação que desejar", no caso da imagem, ele faz uma intalação limpa do projeto.
 ![Screenshot_4](https://user-images.githubusercontent.com/50155338/220721753-4081cffe-cd5c-4ed9-91e8-23ea70e17244.png)
 #### Na imagem abaixo mostra a Action que foi realizada no GitHub.
 ![Screenshot_3](https://user-images.githubusercontent.com/50155338/220721304-5e466418-90e2-4a2a-b10f-b25222e82149.png)

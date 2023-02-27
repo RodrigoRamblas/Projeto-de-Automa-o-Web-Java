@@ -45,7 +45,9 @@ git clone https://github.com/RodrigoRamblas/Projeto-de-Automa-o-Web-Java.git
 ![Screenshot_4](https://user-images.githubusercontent.com/50155338/220721753-4081cffe-cd5c-4ed9-91e8-23ea70e17244.png)
 #### Na imagem abaixo mostra a Action que foi realizada no GitHub.
 ![Screenshot_3](https://user-images.githubusercontent.com/50155338/220721304-5e466418-90e2-4a2a-b10f-b25222e82149.png)
-
+## Teste automatizado de Api com 4 exemplos
+#### O objetivo do teste de API é verificar se a API se comporta de acordo com as especificações e requisitos do projeto, bem como se ela consegue lidar com diferentes tipos de entradas e situações de erro. Alguns dos tipos de testes que podem ser realizados em uma API incluem testes de unidade, testes de integração, testes de aceitação e testes de desempenho.
+![Screenshot_5](https://user-images.githubusercontent.com/50155338/221665527-1e707c55-e2ee-420b-b03a-4b8624860e08.png)
 
 
 
